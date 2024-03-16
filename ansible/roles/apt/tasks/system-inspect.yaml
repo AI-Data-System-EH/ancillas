@@ -1,0 +1,31 @@
+---
+# tasks file for apt
+
+- name: Inspect the system
+  tags: ["ansible-inspect"]
+  become: false
+  debug:
+    # var: ansible_facts
+    msg:
+      - "Inventory      : {{ inventory_hostname }}"
+      - "Hostname       : {{ ansible_hostname }}"
+      - "OS             : {{ ansible_lsb.description }} - {{ ansible_lsb.codename }}"
+      - "Architecture   : {{ ansible_architecture }} / {{ ansible_os_family }}"
+      - "Kernel         : {{ ansible_kernel }}"
+      - "CPU            : {{ ansible_processor[2] }} / {{ ansible_processor_count }} cores"
+      - "Memory         : {{ '%0.2f' | format((ansible_memtotal_mb / 1024)|float) }} GB"
+      - "Disk           : {{ '%0.2f' | format((ansible_mounts[0].size_total / 1024 / 1024 / 1024)|float) }} GB"
+      - "Disk Usage     : {{ '%0.2f' | format(100-(ansible_mounts[0].size_available / ansible_mounts[0].size_total * 100)|float) }} %"
+      - "Virtualization : {{ ansible_virtualization_type }}"
+      - "Package Mgr    : {{ ansible_pkg_mgr }}"
+      - "Service Mgr    : {{ ansible_service_mgr }}"
+      - "Python         : {{ ansible_python_version }}"
+      - "IP             : {{ ansible_default_ipv4.address }}"
+      - "Tailscale IP   : {{ ansible_tailscale0.ipv4.address }}"
+      - "Time           : {{ ansible_date_time.date }} {{ ansible_date_time.time }}"
+      - "Uptime         : {{ ansible_uptime_seconds | human_readable }}"
+      - "User           : {{ ansible_user_id }}"
+      - "User Shell     : {{ ansible_user_shell }}"
+      - "User Home      : {{ ansible_user_dir }}"
+      - "User UID       : {{ ansible_user_uid }}"
+      - "User GID       : {{ ansible_user_gid }}"

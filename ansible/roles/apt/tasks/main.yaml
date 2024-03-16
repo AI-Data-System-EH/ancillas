@@ -1,0 +1,18 @@
+---
+# tasks file for apt
+
+- name: apt/main | Inspect
+  tags: ["system-inspect"]
+  import_tasks: system-inspect.yaml
+
+- name: apt/main | Update and Reboot (Debian/Ubuntu)
+  when: ansible_os_family == "Debian"
+  block:
+    - name: apt/main | System Update
+      tags: ["system-update"]
+      import_tasks: system-update.yaml
+
+    - name: apt/main | System Reboot
+      tags: ["system-reboot"]
+      import_tasks: system-reboot.yaml
+      when: role_default_reboot_after_upgrade == true

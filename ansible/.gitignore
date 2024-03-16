@@ -1,0 +1,15 @@
+# Ansible temporary files
+*.retry
+*.log
+
+# !!! Remove vault password file (highly recommended) !!!
+.vault_pass*
+
+# Remove sensitive data about the hosts
+secret*[.yaml, .yml, .json, .txt]
+
+inventory/**
+!inventory/host_vars/
+!inventory/host_vars/example_host/
+!inventory/**/example_secret.yaml
+!inventory/example_hosts.yaml

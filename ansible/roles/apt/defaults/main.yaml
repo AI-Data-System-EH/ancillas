@@ -1,0 +1,11 @@
+---
+# defaults file for apt
+
+# ::: Tag [ system-update / dist-upgrade ]
+# Run distribution upgrade (apt-get dist-upgrade)
+role_default_dist_upgrade: false
+
+# ::: Tag [ system-reboot ]
+# Reboot the system after upgrade
+role_default_reboot_after_upgrade: false
+role_default_reboot_required_file: /var/run/reboot-required

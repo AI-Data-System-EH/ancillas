@@ -1,0 +1,35 @@
+---
+# tasks file for apt
+
+- name: Upgrade all packages to the latest version
+  ### sudo apt-get update && sudo apt-get upgrade -y
+  tags: ["apt-upgrade"]
+  become: true
+  apt:
+    name: "*"
+    state: latest
+    update_cache: yes
+    cache_valid_time: 3600
+    force_apt_get: yes
+  # debugger: on_failed
+
+- name: Upgrade distribution packages
+  ### sudo apt-get dist-upgrade -y
+  tags: ["dist-upgrade"]
+  when: role_default_dist_upgrade == true
+  become: true
+  apt:
+    upgrade: dist
+    update_cache: yes
+    cache_valid_time: 3600
+    force_apt_get: yes
+  # debugger: on_failed
+
+- name: Clean up the package cache
+  ### sudo apt-get autoclean && sudo apt-get autoremove -y
+  tags: ["apt-clean"]
+  become: true
+  apt:
+    autoclean: yes
+    autoremove: yes
+    force_apt_get: yes

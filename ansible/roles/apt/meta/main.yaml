@@ -1,0 +1,27 @@
+---
+# meta information of the role
+
+galaxy_info:
+  role_name: apt
+  description: Ubuntu package management
+  author: "Ancillas"
+  license: "MIT"
+  min_ansible_version: "2.1"
+
+  galaxy_tags: ["apt", "ubuntu", "package", "management"]
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+    - name: Fedora
+      versions:
+        - all
+    - name: EL
+      versions:
+        - all
+
+dependencies: []

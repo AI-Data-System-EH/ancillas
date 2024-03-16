@@ -1,0 +1,28 @@
+---
+# ./playbook/poetry.yaml
+
+- name: Install Poetry
+  hosts: all
+  tags: ["poetry-install"]
+  become: true
+  tasks:
+    - name: Check Poetry Installed
+      # test -f /usr/local/bin/poetry
+      tags: ["never"]
+      stat:
+        path: ~/.local/bin/poetry
+      no_log: true
+      register: poetry_installed
+
+    - name: Install Poetry
+      tags: ["never"]
+      shell: curl -sSL https://install.python-poetry.org | python3 -
+      when: poetry_installed.stat.exists == False
+      debugger: on_failed
+
+    - name: Install Poetry Plugins
+      tags: ["never"]
+      shell: poetry plugin list
+      when: poetry_installed.stat.exists == True
+      register: poetry_plugins
+      debugger: on_failed

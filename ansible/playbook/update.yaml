@@ -1,0 +1,15 @@
+---
+# ./playbook/update.yaml
+
+- name: update.yaml
+  hosts: all
+  # become: true
+  # gather_facts: true
+  roles:
+    - apt
+    # - poetry
+    # - oh-my-zsh
+    # - docker
+    # - python
+    # - nvm
+    # - tailscale

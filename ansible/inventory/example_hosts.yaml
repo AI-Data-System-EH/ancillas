@@ -1,0 +1,52 @@
+---
+# This is example hosts file
+#
+# ./inventory/hosts.yaml
+
+GROUP_NAME_USED_IN_ANSIBLE:
+  hosts:
+    HOST_NAME_USED_IN_ANSIBLE:
+      ansible_host: REMOTE_IP_ADDRESS or REMOTE_HOSTNAME
+      ansible_user: REMOTE_USERNAME
+      ansible_ssh_pass: REMOTE_USER_PASSWORD
+      ansible_become_pass: YOUR_REMOTE_SUDO_PASSWORD
+      ansible_python_interpreter: /usr/bin/python3 # Optional, remote python interpreter path
+
+    HOST_NAME_USED_IN_ANSIBLE_2:
+      ansible_host: 192.168.999.999
+      ansible_user: remote_user
+      ansible_ssh_pass: remote_user_password
+      ansible_become_pass: remote_sudo_password
+
+GROUP_2:
+  hosts:
+    MY_SERVER:
+      # host details can be added in another file
+      # `host_vars/MY_SERVER.yaml`
+      # `host_vars/MY_SERVER/vars.yaml`
+      # `host_vars/MY_SERVER/secrets.yaml`
+      # `group_vars/GROUP_2.yaml`
+#
+#
+#
+#
+# ************************ Example ************************
+# EXAMPLE_GROUP:
+#   hosts:
+#     EXAMPLE_HOST: # Host name
+#       ansible_host: IP_ADDRESS or HOSTNAME
+#       ansible_user: USERNAME
+#       ansible_ssh_pass: USER_PASSWORD
+#       ansible_become_pass: SUDO_PASSWORD
+#       ansible_python_interpreter: /usr/bin/python3
+#   vars: # Optional, group variables to be used by all hosts in the group
+#     ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+#     ansible_connection: ssh
+#     ansible_port: 22
+#     ansible_become: yes # Use sudo for privilege escalation
+#     ansible_become_method: sudo
+#     ansible_become_user: root
+#     ansible_become_pass: SUDO_PASSWORD
+#     ansible_ssh_private_key_file: /path/to/private/key
+#     ansible_shell_type: sh
+#     ansible_shell_executable: /bin/bash
